@@ -8,6 +8,7 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  LogBox,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -16,6 +17,9 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+
+//ingore all logs to display
+LogBox.ignoreAllLogs();
 
 import {
   Colors,

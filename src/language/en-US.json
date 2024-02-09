@@ -1,0 +1,12 @@
+{
+  "splash": {
+    "welcom_to": "Welcome to TulipTech",
+    "lets_start": "Let's Start"
+  },
+
+  "home": {
+    "home": "Home",
+    "number_of_columns": "Number of Columns",
+    "number_of_rows": "Number of Rows"
+  }
+}

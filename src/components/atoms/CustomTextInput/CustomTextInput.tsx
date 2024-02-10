@@ -20,8 +20,8 @@ import tw from 'twrnc';
 export interface Props {
   label: string;
   isOptional?: boolean;
-  placeholder?: string | null;
-  value?: string;
+  placeholder?: string | number| null;
+  value?: string | number;
   onChangeValue: (value: string) => any;
   type?: 'text' | 'email' | 'password';
   keyboardType?: KeyboardTypeOptions;
@@ -86,10 +86,13 @@ export const CustomTextInput: React.FC<Props> = props => {
 
   return (
     <View style={[defaultStyles.rootView, containerStyle]}>
+      {label ? <CustomText variant='subTitle' style={tw`ml mb-2`}>
+          {label}
+      </CustomText> : null}
       <View
         style={[
           defaultStyles.inputOuterView,
-          tw`border-2 border-gray-100`,
+          tw`border-2 border-gray-100 rounded`,
           isValidated
             ? {borderColor: Colors.success}
             : errorMessage
@@ -103,6 +106,7 @@ export const CustomTextInput: React.FC<Props> = props => {
             defaultStyles.inputView,
             {backgroundColor: Colors.white},
             inputViewStyle,
+            tw`rounded-2`,
             isValidated
               ? tw`bg-red-500/[.06]`
               : errorMessage
@@ -121,7 +125,7 @@ export const CustomTextInput: React.FC<Props> = props => {
                   height: Sizes[6],
                   width: Sizes[6],
                   // borderWidth: 1,
-                  borderRadius: Sizes[3],
+                  // borderRadius: Sizes[3],
                   borderColor: themeColors.accent,
                   marginRight: Sizes[2],
                 },
@@ -219,7 +223,7 @@ const defaultStyles = StyleSheet.create({
   },
   inputOuterView: {
     // borderWidth: 2,
-    borderRadius: Sizes[12] * 2,
+    // borderRadius: Sizes[12],
   },
   inputView: {
     flexDirection: 'row',
@@ -227,7 +231,7 @@ const defaultStyles = StyleSheet.create({
     justifyContent: 'space-between',
     height: Sizes[12],
     paddingHorizontal: Sizes[3],
-    borderRadius: Sizes[12] * 2,
+    // borderRadius: Sizes[12] * 2,
     borderWidth: 1,
     borderColor: Colors.accent,
   },

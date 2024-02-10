@@ -7,17 +7,25 @@ export interface Props {
     width: number;
     item:string | number
     onPress: ()=>void
+    selectedCell: string;
 }
 
-const Grid: FC<Props> = ({height,width,item,onPress}) => {
+const Grid: FC<Props> = ({height,width,item,onPress,selectedCell}) => {
+  if(item===selectedCell){
+console.log(selectedCell)
+  }
   return (
     <TouchableOpacity
-    onPress={onPress}
+      onPress={onPress}
         style={[{
-        height: height ,
-        width: width ,
-    },tw`bg-slate-400 border-gray-300 justify-center item-center border-l-4 border-t-4`]}>
-            <Text style={tw`self-center text-gray-100`}>{item}</Text>
+          height: height,
+          width: width
+        },
+        tw`justify-center item-center border-l-4 border-t-4 border-gray-300`,
+        selectedCell === item ? tw`bg-slate-500 ` : tw`bg-slate-400 `] 
+      }
+    >
+        <Text style={tw`self-center text-slate-400 opacity-50`}>{item}</Text>
     </TouchableOpacity>
   );
 }

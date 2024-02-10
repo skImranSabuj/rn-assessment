@@ -7,6 +7,8 @@
   "home": {
     "home": "Home",
     "number_of_columns": "No. of Columns",
-    "number_of_rows": "No. of Rows"
+    "number_of_rows": "No. of Rows",
+    "cell_width": "Cell width",
+    "cell_height": "Cell height"
   }
 }

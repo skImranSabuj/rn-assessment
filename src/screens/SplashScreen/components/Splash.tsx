@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ImageBackground} from 'react-native';
 import React, {FC} from 'react';
 import tw from 'twrnc';
 import CustomText from '../../../components/atoms/CustomText/CustomText';
@@ -14,21 +14,25 @@ export interface Props {
 const Spash: FC<Props> = ({handleNavigation}) => {
   const {t} = useTranslation();
   return (
-    <View style={tw`flex-1 p-4 android:pt-2`}>
+    <ImageBackground source={Images.grid_bg} imageStyle={tw`opacity-30`} style={tw`flex-1 p-4 android:pt-2`}>
       <View style={tw`flex-1 justify-center items-center`}>
         <Image
           source={Images.logo}
-          resizeMode="cover"
+          resizeMode="contain"
           style={{height: 200, width: 200}}
         />
       </View>
-      <View style={[{flex: 1}]}>
-        <CustomText variant="titleLarge" color={Colors.onBackground} center>
+      <View style={tw`flex-1 justify-end`}>
+        {/* <CustomText variant="titleLarge" color={Colors.onBackground} center>
           {t('splash.welcom_to')}
-        </CustomText>
-        <CustomButton name={t('splash.lets_start')} onPress={handleNavigation}/>
+        </CustomText> */}
+        <CustomButton 
+          name={t('splash.lets_start')} 
+          onPress={handleNavigation} 
+          constainerStyle={tw`mx-4 mb-12`}
+        />
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 

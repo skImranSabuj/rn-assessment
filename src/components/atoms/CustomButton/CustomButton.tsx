@@ -1,17 +1,19 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ViewStyle} from 'react-native';
 import React, {FC} from 'react';
 import tw from 'twrnc';
+import CustomText from '../CustomText/CustomText';
 
 export interface Props {
   name: string;
   onPress?: () => void;
+  constainerStyle?: ViewStyle;
 }
 
 const CustomButton: FC<Props> = props => {
-  const {name, onPress} = props;
+  const {name, onPress, constainerStyle} = props;
   return (
-    <TouchableOpacity style={[tw`px py-1.5 justify-center items-center rounded-full my-2 bg-sky-400 `]} onPress={()=>onPress ? onPress() : null}>
-      <Text style={[tw`text-neutral-50`]}>{name}</Text>
+    <TouchableOpacity style={[tw`h-12 px py-1.5 justify-center items-center rounded-2 my-2 bg-sky-400`, constainerStyle]} onPress={()=>onPress ? onPress() : null}>
+      <Text style={tw`text-neutral-50 text-xl uppercase`}>{name}</Text>
     </TouchableOpacity>
   );
 };

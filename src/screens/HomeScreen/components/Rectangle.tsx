@@ -30,8 +30,7 @@ const Rectangle = () => {
             height={userDefinedCellheight ? userDefinedCellheight : cellHeight} 
             width={userDefinedCellWidth? userDefinedCellWidth : cellWidth} 
             onPress={()=>{
-              console.log({gridItem})
-                setSelectedCell(gridItem)
+                setSelectedCell(gridItem);
               }
             }
             selectedCell={selectedCell}
@@ -108,7 +107,7 @@ console.log({userDefinedCellWidth,userDefinedCellheight})
         <FlatList
           data={rowData}
           nestedScrollEnabled
-          contentContainerStyle={[tw`bg-slate-300 border-gray-800 rounded-2`]}
+          contentContainerStyle={[tw`bg-slate-300 border-gray-800 rounded-2 mb-8`]}
           renderItem={renderRows}
           keyExtractor={(item,index)=>index.toString()}
         />

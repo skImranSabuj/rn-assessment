@@ -5,15 +5,19 @@ import tw from 'twrnc';
 export interface Props {
     height:number;
     width: number;
-    item:string | number
+    item:string
     onPress: ()=>void
     selectedCell: string;
 }
 
 const Grid: FC<Props> = ({height,width,item,onPress,selectedCell}) => {
-  if(item===selectedCell){
-console.log(selectedCell)
-  }
+ const [rowStr,colStr] = item.split('/');
+ const rowNumber = Number(rowStr);
+ const colNumber = Number(colStr);
+ 
+ const isDarkBg = rowNumber%2 === 1 && colNumber%2 === 0 || 
+      rowNumber%2 === 0 && colNumber%2 === 1;
+ 
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -26,7 +30,12 @@ console.log(selectedCell)
         ] 
       }
     >
-      <View style={[{flex:1},tw`rounded justify-center item-center `,selectedCell === item ? tw`bg-slate-500` : tw`bg-slate-400`]}>
+      <View 
+        style={[
+          tw`flex-1 rounded justify-center item-center `,
+          isDarkBg ? tw`bg-slate-800` : tw`bg-slate-700`,
+          selectedCell === item ? tw`bg-slate-950` : {},
+        ]}>
         <Text style={tw`self-center text-slate-400 opacity-50`}>{item}</Text>
       </View>
     </TouchableOpacity>

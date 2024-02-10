@@ -174,7 +174,7 @@ const defaultStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: Sizes[12],
+    height: Sizes[10],
     paddingHorizontal: Sizes[3],
     borderWidth: 1,
     borderColor: Colors.accent,

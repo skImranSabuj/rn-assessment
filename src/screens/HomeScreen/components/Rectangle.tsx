@@ -36,7 +36,16 @@ const Rectangle = () => {
             }
             selectedCell={selectedCell}
         />
-  )},[userDefinedCellWidth,userDefinedCellheight, numberOfColumns, numberOfRows, selectedCell]);
+  )},
+  [
+    userDefinedCellWidth,
+    userDefinedCellheight, 
+    numberOfColumns,
+    numberOfRows, 
+    selectedCell,
+    rectangleHeight,
+    rectangleWidth
+  ]);
 
   const renderRows = useCallback(({item})=>{
     const rowIndex = item;
@@ -50,6 +59,18 @@ console.log({userDefinedCellWidth,userDefinedCellheight})
   return (
     <View
       style={[tw`flex-1 py-12 border`]}>
+      <View style={tw`flex-row mt-4`}>
+        <GridManagerInputItem 
+          label={t('home.height_of')} 
+          value={rectangleHeight}
+          handleChangeValue={setRectangleHeight} 
+        />
+        <GridManagerInputItem 
+          label={t('home.width_of')} 
+          value={rectangleWidth}
+          handleChangeValue={setRectangleWidth} 
+        />
+      </View>
       <View style={tw`flex-row mt-4`}>
         <GridManagerInputItem 
           label={t('home.number_of_columns')} 

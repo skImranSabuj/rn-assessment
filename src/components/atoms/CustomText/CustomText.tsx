@@ -27,10 +27,9 @@ interface CustomTextProps extends TextProps {
 }
 
 const CustomText: React.FC<CustomTextProps> = props => {
-  const themeColors = Colors;
   const {
     variant = 'body',
-    color = themeColors.onBackground,
+    color = Colors.onBackground,
     center = false,
     isLink = false,
     style,
@@ -40,7 +39,7 @@ const CustomText: React.FC<CustomTextProps> = props => {
 
   const textStyles: TextStyle[] = [
     styles[variant],
-    isLink ? {textDecorationLine: 'underline', color: themeColors.primary} : {},
+    isLink ? {textDecorationLine: 'underline', color: Colors.primary} : {},
     {color, textAlign: center ? 'center' : 'left'},
   ];
 
@@ -56,6 +55,7 @@ const CustomText: React.FC<CustomTextProps> = props => {
 const styles = StyleSheet.create({
   title: {
     fontSize: Sizes[5],
+    fontWeight:'600',
   },
   subTitle: {
     fontSize: Sizes[4],

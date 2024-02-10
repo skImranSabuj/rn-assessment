@@ -50,7 +50,7 @@ const Rectangle = () => {
   const renderRows = useCallback(({item})=>{
     const rowIndex = item;
     return <FlatList horizontal showsHorizontalScrollIndicator={false} data={columnData} renderItem={({item,index})=>renderGrid(rowIndex,item)}/>
-  },[columnData]);
+  },[columnData, rectangleHeight, rectangleWidth]);
 
   useEffect(()=>{
 

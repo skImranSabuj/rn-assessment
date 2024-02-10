@@ -8,20 +8,21 @@ import CustomText from '../../../components/atoms/CustomText/CustomText';
 import { useTranslation } from 'react-i18next';
 import CustomButton from '../../../components/atoms/CustomButton/CustomButton';
 import GridManagerInputItem from './GridManagerInputItem';
+import { Dimens } from '../../../constants/theme';
 // import Svg, {Rec from 'react-native-svg';t}
 
 const Rectangle = () => {
   const {t} = useTranslation();
-  const [rectangles, setRectangles] = useState([]);
-  const [activeRectangle, setActiveRectangle] = useState(null);
-  const width = Dimensions.get('window').width;
-  const height = width;
+  const [rectangleWidth, setRectangleWidth] = useState(Dimens.contentWidth);
+  const [rectangleHeight, setRectangleHeight] = useState(Dimens.contentWidth);
+  // const rectangleWidth = Dimensions.get('window').width;
+  const height = rectangleWidth;
   const [numberOfRows, setNumberOfRow] = useState(3);
   const [numberOfColumns, setNumberOfColumn] = useState(3);
   // const [cellWidth, setCellWidth] = useState(width / numberOfColumns);
-  const cellWidth = width / numberOfColumns;
+  const cellWidth = rectangleWidth / numberOfColumns;
   const [userDefinedCellWidth, setuserDefinedCellWidth] = useState<number>(0);
-  const cellHeight = width / numberOfColumns;
+  const cellHeight = rectangleWidth / numberOfRows;
   // const [cellHeight, setCellHeight] = useState(width / numberOfRows);
   const [userDefinedCellheight, setuserDefinedCellHeight] = useState<number>(0);
   const [selectedCell, setSelectedCell] = useState<string>('');
@@ -56,7 +57,7 @@ const Rectangle = () => {
 console.log({userDefinedCellWidth,userDefinedCellheight})
   return (
     <View
-      style={[tw`my-auto flex-1 py-12 border`]}>
+      style={[tw`flex-1 py-12 border`]}>
       <View style={tw`flex-row mt-4`}>
         <GridManagerInputItem 
           label={t('home.number_of_columns')} 
@@ -81,12 +82,13 @@ console.log({userDefinedCellWidth,userDefinedCellheight})
           handleChangeValue={setuserDefinedCellWidth} 
         />
       </View>
-      <View style={tw`flex-1`}>
+      <View style={
+            [tw`items-center mx-auto rounded-2 overflow-hidden mt-4`,  
+            {height:rectangleHeight,width:rectangleWidth}]}>
         <FlatList
           data={rowData}
           nestedScrollEnabled
-          alwaysBounceHorizontal
-          contentContainerStyle={[tw`aspect-ratio-h-1 aspect-ratio-w-1 bg-slate-300 border-gray-300 mt-4 border-r-4 border-b-4`]}
+          contentContainerStyle={[tw`bg-slate-300 border-gray-800 rounded-2`]}
           renderItem={renderRows}
         />
       </View>

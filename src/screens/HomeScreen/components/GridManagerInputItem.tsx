@@ -5,7 +5,7 @@ import CustomTextInput from '../../../components/atoms/CustomTextInput/CustomTex
 
 export interface Props {
     label:string;
-    value:number;
+    value:any;
     handleChangeValue:(value:number)=>void;
     constainerStyle?:ViewProps
 }

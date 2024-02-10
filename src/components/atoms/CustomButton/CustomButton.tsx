@@ -1,7 +1,6 @@
 import {View, Text, TouchableOpacity, ViewStyle} from 'react-native';
 import React, {FC} from 'react';
 import tw from 'twrnc';
-import CustomText from '../CustomText/CustomText';
 
 export interface Props {
   name: string;

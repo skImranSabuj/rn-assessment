@@ -2,28 +2,20 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, PanResponder, Dimensions, FlatList, Text} from 'react-native';
 import Grid from './Grid';
 import tw from 'twrnc'
-import CustomTextInput from '../../../components/atoms/CustomTextInput/CustomTextInput';
 import { generateNumberArray } from '../../../utils/utils';
-import CustomText from '../../../components/atoms/CustomText/CustomText';
 import { useTranslation } from 'react-i18next';
-import CustomButton from '../../../components/atoms/CustomButton/CustomButton';
 import GridManagerInputItem from './GridManagerInputItem';
 import { Dimens } from '../../../constants/theme';
-// import Svg, {Rec from 'react-native-svg';t}
 
 const Rectangle = () => {
   const {t} = useTranslation();
   const [rectangleWidth, setRectangleWidth] = useState(Dimens.contentWidth);
   const [rectangleHeight, setRectangleHeight] = useState(Dimens.contentWidth);
-  // const rectangleWidth = Dimensions.get('window').width;
-  const height = rectangleWidth;
   const [numberOfRows, setNumberOfRow] = useState(3);
   const [numberOfColumns, setNumberOfColumn] = useState(3);
-  // const [cellWidth, setCellWidth] = useState(width / numberOfColumns);
   const cellWidth = rectangleWidth / numberOfColumns;
   const [userDefinedCellWidth, setuserDefinedCellWidth] = useState<number>(0);
   const cellHeight = rectangleWidth / numberOfRows;
-  // const [cellHeight, setCellHeight] = useState(width / numberOfRows);
   const [userDefinedCellheight, setuserDefinedCellHeight] = useState<number>(0);
   const [selectedCell, setSelectedCell] = useState<string>('');
   const START_INDEX = 1;
@@ -44,7 +36,7 @@ const Rectangle = () => {
             }
             selectedCell={selectedCell}
         />
-  )},[userDefinedCellWidth,userDefinedCellheight, numberOfColumns, numberOfColumns, selectedCell]);
+  )},[userDefinedCellWidth,userDefinedCellheight, numberOfColumns, numberOfRows, selectedCell]);
 
   const renderRows = useCallback(({item})=>{
     const rowIndex = item;

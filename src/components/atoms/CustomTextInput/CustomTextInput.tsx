@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -7,21 +7,15 @@ import {
   ViewStyle,
   TextStyle,
   TextInputProps,
-  Text,
-  Image,
 } from 'react-native';
-import appDimens from '../../../constants/Dimens';
-// import InputLabel from '../../atoms/InputLabel/InputLabel';
-import Images from '../../../constants/Images';
 import {Colors, Sizes} from '../../../constants/theme';
 import CustomText from '../../atoms/CustomText/CustomText';
 import tw from 'twrnc';
 
 export interface Props {
   label: string;
-  isOptional?: boolean;
   placeholder?: string | number| null;
-  value?: string | number;
+  value: string;
   onChangeValue: (value: string) => any;
   type?: 'text' | 'email' | 'password';
   keyboardType?: KeyboardTypeOptions;
@@ -29,8 +23,6 @@ export interface Props {
   containerStyle?: ViewStyle;
   inputViewStyle?: ViewStyle;
   inputTextStyle?: TextStyle;
-  iconLeft?: string;
-  suffixIcon?: string;
   isEditable?: boolean;
   errorMessage?: string;
   disableDelayDebounceFn?: boolean;
@@ -40,7 +32,6 @@ export interface Props {
 export const CustomTextInput: React.FC<Props> = props => {
   const {
     label,
-    isOptional,
     placeholder,
     value = '',
     onChangeValue,
@@ -50,8 +41,6 @@ export const CustomTextInput: React.FC<Props> = props => {
     containerStyle,
     inputViewStyle,
     inputTextStyle,
-    iconLeft,
-    suffixIcon,
     isEditable = true,
     errorMessage = '',
     disableDelayDebounceFn = true,
@@ -71,14 +60,13 @@ export const CustomTextInput: React.FC<Props> = props => {
     };
   }, []);
 
-  //function reduce the api call, because we should not called api until user finish typing
+  //function reduce the api call or complex rendering
   const callSearchInterval = (value: string) => {
     if (delayDebounceFn != null) {
       clearTimeout(delayDebounceFn);
     }
     setDelayDebounceFn(
       setTimeout(() => {
-        // console.log('searchTerm', value)
         onChangeValue(value);
       }, 500),
     );
@@ -91,7 +79,6 @@ export const CustomTextInput: React.FC<Props> = props => {
       </CustomText> : null}
       <View
         style={[
-          defaultStyles.inputOuterView,
           tw`border-2 border-gray-100 rounded`,
           isValidated
             ? {borderColor: Colors.success}
@@ -117,29 +104,6 @@ export const CustomTextInput: React.FC<Props> = props => {
               : {},
             isFocused ? {borderWidth: 0} : {},
           ]}>
-          {iconLeft && (
-            <View
-              style={[
-                tw`justify-center items-center`,
-                {
-                  height: Sizes[6],
-                  width: Sizes[6],
-                  // borderWidth: 1,
-                  // borderRadius: Sizes[3],
-                  borderColor: themeColors.accent,
-                  marginRight: Sizes[2],
-                },
-              ]}>
-              {/* <Icon
-                name={iconLeft}
-                size={18}
-                // style={{marginLeft: 10}}
-                color={showPassword ? Colors.primary : Colors.accent}
-                onPress={() => setShowPassword(!showPassword)}
-                accessibilityLabel="eye-icon"
-              /> */}
-            </View>
-          )}
           {disableDelayDebounceFn ? (
             <TextInput
               editable={isEditable}
@@ -193,21 +157,6 @@ export const CustomTextInput: React.FC<Props> = props => {
       </View>
       {errorMessage ? (
         <View style={[tw`flex-row items-center`, defaultStyles.errorView]}>
-          {/* <Image
-            source={Images.ic_warning}
-            resizeMode="contain"
-            style={defaultStyles.warningIcon}
-          /> */}
-          {/* errorText: {
-            fontFamily: Fonts.semiBoldFont,
-            fontSize: 12,
-            lineHeight: 18,
-            color: Colors.red,
-            textAlign: 'left',
-            marginLeft: 5.33,
-          },
-           */}
-
           <CustomText variant="caption" style={{marginLeft: Sizes[2]}}>
             {errorMessage}
           </CustomText>
@@ -221,36 +170,24 @@ const defaultStyles = StyleSheet.create({
   rootView: {
     flexDirection: 'column',
   },
-  inputOuterView: {
-    // borderWidth: 2,
-    // borderRadius: Sizes[12],
-  },
   inputView: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     height: Sizes[12],
     paddingHorizontal: Sizes[3],
-    // borderRadius: Sizes[12] * 2,
     borderWidth: 1,
     borderColor: Colors.accent,
   },
   inputText: {
     flex: 1,
-    // fontFamily: Fonts.mediumFont,
     fontSize: Sizes[4],
     lineHeight: Sizes[5],
-
     textAlign: 'left',
   },
   errorView: {
     marginTop: 6,
     marginLeft: 2,
-  },
-
-  warningIcon: {
-    height: Sizes[3],
-    width: Sizes[3],
   },
   inputViewForError: {
     borderColor: 'transparent',

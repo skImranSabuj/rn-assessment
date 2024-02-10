@@ -1,8 +1,6 @@
 import {View, Text, Image, ImageBackground} from 'react-native';
 import React, {FC} from 'react';
 import tw from 'twrnc';
-import CustomText from '../../../components/atoms/CustomText/CustomText';
-import {Colors} from '../../../constants/theme';
 import Images from '../../../constants/images';
 import {useTranslation} from 'react-i18next';
 import CustomButton from '../../../components/atoms/CustomButton/CustomButton';
@@ -23,9 +21,6 @@ const Spash: FC<Props> = ({handleNavigation}) => {
         />
       </View>
       <View style={tw`flex-1 justify-end`}>
-        {/* <CustomText variant="titleLarge" color={Colors.onBackground} center>
-          {t('splash.welcom_to')}
-        </CustomText> */}
         <CustomButton 
           name={t('splash.lets_start')} 
           onPress={handleNavigation} 

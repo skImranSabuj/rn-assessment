@@ -49,7 +49,14 @@ const Rectangle = () => {
 
   const renderRows = useCallback(({item})=>{
     const rowIndex = item;
-    return <FlatList horizontal showsHorizontalScrollIndicator={false} data={columnData} renderItem={({item,index})=>renderGrid(rowIndex,item)}/>
+    return (
+      <FlatList 
+        horizontal 
+        showsHorizontalScrollIndicator={false} 
+        data={columnData} 
+        keyExtractor={(item)=>item.toString()}
+        renderItem={({item,index})=>renderGrid(rowIndex,item)}
+      />)
   },[columnData, rectangleHeight, rectangleWidth]);
 
   useEffect(()=>{
@@ -103,6 +110,7 @@ console.log({userDefinedCellWidth,userDefinedCellheight})
           nestedScrollEnabled
           contentContainerStyle={[tw`bg-slate-300 border-gray-800 rounded-2`]}
           renderItem={renderRows}
+          keyExtractor={(item,index)=>index.toString()}
         />
       </View>
     </View>
